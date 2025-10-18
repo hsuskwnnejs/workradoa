@@ -52,8 +52,10 @@ export const ServiceSettings: React.FC = () => {
 
       <StyledServiceSettingsTabs>
         <WaTabGroup
-          onChange={(event: any) => setActiveTab(event.detail?.value ?? activeTab)}
-          value={activeTab}
+          onChange={(event: any) => {
+            const newTab = event.detail?.panel ?? event.target?.panel;
+            if (newTab) setActiveTab(newTab);
+          }}
         >
           {tabsKeys
             .filter(key => key !== 'walltaker')
