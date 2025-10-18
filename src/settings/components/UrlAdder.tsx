@@ -55,8 +55,9 @@ export const UrlAdder: React.FC = () => {
 
   return (
     <SettingsGrid style={{ gridColumn: '1 / -1' }}>
-      <SettingsDescription label="Add image URLs">
-        Paste one or more image URLs (http/https), separated by spaces or commas.
+      {/* Removed the label prop */}
+      <SettingsDescription>
+        <strong>Add image URLs</strong>: Paste one or more image URLs (http/https), separated by spaces or commas.
       </SettingsDescription>
 
       <JoiStack direction="column">
@@ -71,7 +72,8 @@ export const UrlAdder: React.FC = () => {
           <WaButton onClick={onAdd} aria-label="Add URLs">
             <WaIcon name="plus" /> Add URLs
           </WaButton>
-          <WaButton subtle onClick={() => setText('')}>
+          {/* Removed the subtle prop */}
+          <WaButton onClick={() => setText('')}>
             Clear
           </WaButton>
         </div>
