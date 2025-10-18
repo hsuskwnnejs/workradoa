@@ -1,8 +1,8 @@
 {
-  "name": "joi.how",
+  "name": "workradoa",
   "version": "2.6.0",
   "private": true,
-  "description": "jack-off-instruction stroke-to-the-beat slideshow",
+  "description": "adjiosajdjas",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -72,7 +72,6 @@
     "vite": "^5.2.0"
   },
   "engines": {
-    "node": "^20.0.0",
-    "npm": "please-use-yarn"
+    "node": "^20.0.0"
   }
 }
