@@ -1,4 +1,5 @@
 import { ImageGrid, ImageDialog, Space, Fields, JoiStack } from '../../common';
+import UrlAdder from './UrlAdder';
 import { useImages, useSetting } from '../../settings';
 import { useState } from 'react';
 import { ImageItem } from '../../types';
