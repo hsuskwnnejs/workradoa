@@ -2,7 +2,7 @@
   "name": "workradoa",
   "version": "2.6.0",
   "private": true,
-  "description": "adjiosajdjas",
+  "description": "dasdasdasdsa",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -72,6 +72,6 @@
     "vite": "^5.2.0"
   },
   "engines": {
-    "node": "^20.0.0"
+    "node": ">=22.0.0"
   }
 }
