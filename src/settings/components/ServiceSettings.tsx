@@ -2,6 +2,7 @@ import { E621Search } from '../../e621';
 import { useState } from 'react';
 import { WalltakerSearch } from '../../walltaker';
 import { LocalImport } from '../../local';
+import UrlAdder from './UrlAdder';
 import { WaTabGroup, WaTab } from '@awesome.me/webawesome/dist/react';
 import styled from 'styled-components';
 import { Fields } from '../../common';
@@ -18,49 +19,44 @@ const tabs: Record<
     component: <E621Search />,
   },
   walltaker: {
-    label: 'Walltaker',
+    label: 'walltaker',
     component: <WalltakerSearch />,
   },
-  local: {
-    label: 'Device',
+  device: {
+    label: 'device',
     component: <LocalImport />,
+  },
+  url: {
+    label: 'url',
+    component: <UrlAdder />,
   },
 };
 
-type Tab = keyof typeof tabs;
+const StyledServiceSettingsTabs = styled.div`
+  margin-bottom: 12px;
+`;
 
 const StyledServiceFields = styled(Fields)`
-  & legend {
-    padding: 0;
-  }
+  padding-top: 0;
 `;
 
-const StyledServiceSettingsTabs = styled.div`
-  wa-tab::part(base) {
-    padding: var(--wa-space-2xs) var(--wa-space-xs);
-  }
-
-  wa-tab {
-    background: var(--section-background);
-    transition: background var(--wa-transition-normal);
-  }
-
-  wa-tab[active] {
-    background: var(--legend-background);
-    color: var(--wa-color-foreground);
-  }
-`;
-
-export const ServiceSettings = () => {
-  const [activeTab, setActiveTab] = useState<Tab>('e621');
+export const ServiceSettings: React.FC = () => {
+  const [activeTab, setActiveTab] = useState<string>('e621');
+  const tabsKeys = Object.keys(tabs);
 
   return (
     <StyledServiceFields
-      label={
+      title="Services"
+      description="Pick a source to add images from (e621, walltaker, device, or url)."
+    >
+      {
         <StyledServiceSettingsTabs>
-          <WaTabGroup onWaTabShow={event => setActiveTab(event.detail.name)}>
-            {Object.keys(tabs)
-              .filter(key => key !== 'walltaker') // not ready
+          <WaTabGroup
+            onChange={(panel: string) => setActiveTab(panel)}
+            value={activeTab}
+          >
+            {tabsKeys
+              .filter(key => key !== 'walltaker') // optional: remove this filter if you want walltaker visible
               .map(tab => (
                 <WaTab key={tab} panel={tab} active={activeTab === tab}>
                   {tabs[tab].label}
@@ -69,8 +65,9 @@ export const ServiceSettings = () => {
           </WaTabGroup>
         </StyledServiceSettingsTabs>
       }
-    >
       {tabs[activeTab].component}
     </StyledServiceFields>
   );
 };
+
+export default ServiceSettings;
