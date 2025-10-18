@@ -63,6 +63,7 @@ export const ImageSettings = () => {
           </WaButton>
         </JoiStack>
       </JoiStack>
+
       <ImageDialog
         image={clicked}
         onClose={() => setClicked(undefined)}
@@ -77,7 +78,14 @@ export const ImageSettings = () => {
         }}
         loud={videoSound}
       />
+
       <Space size='small' />
+
+      {/* URL Adder */}
+      <UrlAdder />
+
+      <Space size='small' />
+
       <ImageGrid
         images={images}
         selected={selected}
