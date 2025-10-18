@@ -45,26 +45,26 @@ export const ServiceSettings: React.FC = () => {
   const tabsKeys = Object.keys(tabs);
 
   return (
-    <StyledServiceFields
-      title="Services"
-      description="Pick a source to add images from (e621, walltaker, device, or url)."
-    >
-      {
-        <StyledServiceSettingsTabs>
-          <WaTabGroup
-            onChange={(panel: string) => setActiveTab(panel)}
-            value={activeTab}
-          >
-            {tabsKeys
-              .filter(key => key !== 'walltaker') // optional: remove this filter if you want walltaker visible
-              .map(tab => (
-                <WaTab key={tab} panel={tab} active={activeTab === tab}>
-                  {tabs[tab].label}
-                </WaTab>
-              ))}
-          </WaTabGroup>
-        </StyledServiceSettingsTabs>
-      }
+    <StyledServiceFields title="Services">
+      <p style={{ marginBottom: 8, color: '#aaa' }}>
+        Pick a source to add images from (e621, walltaker, device, or url).
+      </p>
+
+      <StyledServiceSettingsTabs>
+        <WaTabGroup
+          onChange={(event: any) => setActiveTab(event.detail?.value ?? activeTab)}
+          value={activeTab}
+        >
+          {tabsKeys
+            .filter(key => key !== 'walltaker')
+            .map(tab => (
+              <WaTab key={tab} panel={tab} active={activeTab === tab}>
+                {tabs[tab].label}
+              </WaTab>
+            ))}
+        </WaTabGroup>
+      </StyledServiceSettingsTabs>
+
       {tabs[activeTab].component}
     </StyledServiceFields>
   );
